@@ -49,11 +49,25 @@ else{
 			$groupids = $row[4];
 			$sql = "update `Proj2Appointments` set `EnrolledNum` = EnrolledNum+1, `EnrolledID` = '$groupids $studid' where `Time` = '$apptime' and `AdvisorID` = 0";
 			$rs = $COMMON->executeQuery($sql, $_SERVER["SCRIPT_NAME"]);
+
+			$_SESSION["appLoc"] = "ITE 100";	// my addition to save appt data into session variables; this is default for location of group appts
+			$_SESSION["appAdName"] = "Group";	// the other two variables, appTime and advisor, are already defined.
+
 		}
 		else // student scheduled for an individual session
 		{
 			$sql = "update `Proj2Appointments` set `EnrolledNum` = EnrolledNum+1, `EnrolledID` = '$studid' where `AdvisorID` = '$advisor' and `Time` = '$apptime'";
 			$rs = $COMMON->executeQuery($sql, $_SERVER["SCRIPT_NAME"]);
+
+			$sql = "select * from Proj2Advisors where `id` = '$advisor'";		//my addition: required to get all appt data
+			$rs = $COMMON->executeQuery($sql, $_SERVER["SCRIPT_NAME"]);
+			$row = mysql_fetch_row($rs);
+
+			$appLoc = $row[7];
+			$_SESSION["appLoc"] = $row[7];				// my addition: save appt data in session vars; 5 = office
+			$appAdName = $row[1] . " " . $row[2];
+			$_SESSION["appAdName"] = $appAdName;			// the other two variables, appTime and advisor, are already defined.
+
 		}
 		
 	
@@ -79,10 +93,23 @@ else{
 			$groupids = $row[4];
 			$sql = "update `Proj2Appointments` set `EnrolledNum` = EnrolledNum+1, `EnrolledID` = '$groupids $studid' where `Time` = '$apptime' and `AdvisorID` = 0";
 			$rs = $COMMON->executeQuery($sql, $_SERVER["SCRIPT_NAME"]);
+
+			$_SESSION["appLoc"] = "ITE 100";	// my addition to save appt data into session variables: this is default for location of group appts.
+			$_SESSION["appAdName"] = "Group";	// the other two variables, appTime and advisor, are already defined.
+
 		}
 		else{
 			$sql = "update `Proj2Appointments` set `EnrolledNum` = EnrolledNum+1, `EnrolledID` = '$studid' where `Time` = '$apptime' and `AdvisorID` = '$advisor'";
 			$rs = $COMMON->executeQuery($sql, $_SERVER["SCRIPT_NAME"]);
+
+			$sql = "select * from Proj2Advisors where `id` = '$advisor'";		//my addition: required to get all appt data
+			$rs = $COMMON->executeQuery($sql, $_SERVER["SCRIPT_NAME"]);
+			$row = mysql_fetch_row($rs);
+
+			$appLoc = $row[7];
+			$_SESSION["appLoc"] = $row[7];				// my addition: save appt data in session vars; 5 = office
+			$appAdName = $row[1] . " " . $row[2];
+			$_SESSION["appAdName"] = $appAdName;			// the other two variables, appTime and advisor, are already defined
 		}
 
 		$_SESSION["status"] = "resch";
