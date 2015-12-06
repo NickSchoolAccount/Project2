@@ -18,12 +18,13 @@ $_SESSION["appTime"] = $_POST["appTime"]; // radio button selection from previou
 	    <?php
 			$debug = false;
 			include('GetStudentData.php');
+			include('ConvertMajor.php');		// my code to convert DB major to unabbreviated
 			$COMMON = new Common($debug);
 			
 			$firstn = getFirstName();
 			$lastn = getLastName();
 			$studid = $_SESSION["studID"];
-			$major = getMajor();
+			$major = ConvertMajor(getMajor());
 			$email = getEmail();
 			
 			if($_SESSION["resch"] == true){

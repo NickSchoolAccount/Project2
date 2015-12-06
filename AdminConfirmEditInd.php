@@ -24,6 +24,7 @@ session_start();
           <?php
             $debug = false;
             include('CommonMethods.php');
+		include('ConvertMajor.php');		// my php file for converting major to unabbreviated form
             $COMMON = new Common($debug);
             $ind = $_POST["IndApp"];
             parse_str($ind);
@@ -48,7 +49,8 @@ session_start();
             echo("Advisor: $row[1] $row[2]<br>");
             echo("Majors included: ");
             if($row[3]){
-              echo("$row[3]<br>"); 
+		$row[3] = ConvertMajor($row[3]);		// my code to convert DB majors to unabbreviated
+              	echo("$row[3]<br>"); 
             }
             else{
               echo("Available to all majors<br>"); 

@@ -2,6 +2,7 @@
 session_start();
 $debug = false;
 include('GetAdvisorData.php');
+include('ConvertMajor.php');
 $COMMON = new Common($debug);
 ?>
 
@@ -77,7 +78,8 @@ $COMMON = new Common($debug);
               $majorDB .= $m . " ";
               $majorPrint .= $m . ", ";
             }
-            $majorPrint = substr($majorPrint, 0, -2);
+	$majorPrint = ConvertMajor($majorPrint);	// my code
+            //$majorPrint = substr($majorPrint, 0, -2);
           }
           
           //get advisor id

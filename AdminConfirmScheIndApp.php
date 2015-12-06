@@ -2,6 +2,7 @@
 session_start();
 $debug = false;
 include('GetAdvisorData.php');
+include('ConvertMajor.php');
 $COMMON = new Common($debug);
 ?>
 
@@ -95,7 +96,7 @@ $COMMON = new Common($debug);
 				$sql = "SELECT * from `Proj2Appointments` where `Time` = '$dt' and `AdvisorID` = '$id'";
 				$rs = $COMMON->executeQuery($sql, $_SERVER["SCRIPT_NAME"]);
 				$row = mysql_fetch_row($rs);
-				echo date('l, F d, Y g:i A', strtotime($dt)), " <br> Majors: ", $majorPrint;
+				echo date('l, F d, Y g:i A', strtotime($dt)), " <br> Majors: ", ConvertMajor($majorPrint);	//Modified to print unabbreviated major on page
 				if($row){
 					echo "<br><span style='color:red'>!!</span>";
 				}

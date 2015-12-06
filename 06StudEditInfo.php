@@ -40,10 +40,10 @@ $rs = $COMMON->executeQuery($sql, $_SERVER["SCRIPT_NAME"]);
 			<div class="field">
 				  <label for="major">Major</label>
 				  <select id="major" name = "major">
-					<option <?php if(getMajor() == 'Computer Engineering'){echo("selected");}?>>Computer Engineering</option>
-					<option <?php if(getMajor() == 'Computer Science'){echo("selected");}?>>Computer Science</option>
-					<option <?php if(getMajor() == 'Mechanical Engineering'){echo("selected");}?>>Mechanical Engineering</option>
-					<option <?php if(getMajor() == 'Chemical Engineering '){echo("selected");}?>>Chemical Engineering</option>
+					<option <?php if($_SESSION["major"] == 'CMPE'){echo("selected");}?>>Computer Engineering</option>
+					<option <?php if($_SESSION["major"] == 'CMSC'){echo("selected");}?>>Computer Science</option>
+					<option <?php if($_SESSION["major"] == 'MENG'){echo("selected");}?>>Mechanical Engineering</option>
+					<option <?php if($_SESSION["major"] == 'CENG'){echo("selected");}?>>Chemical Engineering</option>
 <!-- someday
 					<option <?php if(getMajor() == 'Africana Studies'){echo("selected");}?>>Africana Studies</option>
 					<option <?php if(getMajor() == 'American Studies'){echo("selected");}?>>American Studies</option>

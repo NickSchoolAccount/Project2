@@ -1,6 +1,7 @@
 <?php
 session_start();
 include('GetStudentData.php');
+include('ConvertMajor.php');
 
 $studid = $_SESSION["studID"];			// Added for use in upcoming sql query
 
@@ -18,7 +19,7 @@ $firstn = strtoupper($_POST["firstN"]);
 $lastn = strtoupper($_POST["lastN"]);
 $studid = $_SESSION["studID"];
 $email = $_POST["email"];
-$major = $_POST["major"];
+$major = ConvertMajor($_POST["major"]);
 
 $debug = false;
 $COMMON = new Common($debug);
